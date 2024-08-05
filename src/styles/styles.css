@@ -1,0 +1,227 @@
+:root {
+    --main-font-size: 25px;
+    --button-font-size: 20px;
+    --title-font-size: 35px;
+    --current-temp-font-size: 50px;
+    --border-radius: 10px;
+    --page-width: 80%;
+    --title-margin: 20px;
+    
+}
+
+html {
+    box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+}
+
+/* Current Weather */
+
+.current-weather {
+    /* align-content: start; */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: var(--page-width);
+    height: 200px;
+    border: 1px black solid;
+    border-radius: var(--border-radius);
+    font-size: var(--main-font-size);
+}
+
+.current-location {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    background-color: rgba(67, 67, 67, 0.5);
+    padding: 10px;
+    border-top-left-radius: calc(10px - 1px);
+    border-top-right-radius: calc(10px - 1px);
+}
+
+.current-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 10px;
+    flex: 1 1 auto;
+    /* height: 100%; */
+}
+
+.current-weather-information {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.current-temperature {
+    font-size: var(--current-temp-font-size);
+}
+
+.current-condition {
+    
+}
+
+.current-condition-icon-container {
+
+}
+
+.condition-icon {
+    width: 100px;
+}
+
+.current-max-min {
+    display: flex;
+    gap: 20px;
+}
+
+
+/* Forecast */
+
+/* Buttons */
+.forecast-buttons {
+    display: flex;
+}
+
+.forecast-btn {
+    width: 220px;
+    height: 40px;
+    border-radius: 0px;
+    background-color: rgb(198, 198, 198);
+    font-size: var(--button-font-size);
+}
+
+.forecast-selected {
+    background-color: rgb(1, 218, 1);
+}
+
+.temp-scale-button {
+    font-size: 12px;
+    width: 80px;
+    height: 30px;
+}
+
+.selected-temp-scale {
+    background-color: rgb(1, 218, 1);
+}
+
+/* Daily + Hourly */
+.forecast,
+.hourly-forecast,
+.current-weather-info {
+    font-size: var(--main-font-size);
+    border: 1px black solid;
+    border-radius: var(--border-radius);
+    width: var(--page-width);
+    /* height: 300px; */
+    padding: 10px;
+}
+
+.daily-forecast-body,
+.hourly-forecast-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* gap: 30px; */
+    padding: 0px;
+    margin: 0px;
+}
+
+.forecast-day,
+.hourly-data {
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    /* gap: 20px; */
+    /* padding: 5px; */
+}
+
+.forecast-day:not(:last-child)::after,
+.hourly-data:not(:last-child)::after {
+    content: '';
+    width: 100%;
+    border-bottom: 1px black solid;
+    grid-column: 1 / 4;
+}
+
+.daily-forecast-title,
+.hourly-forecast-title,
+.current-weather-info-title {
+    font-size: var(--title-font-size);
+    font-weight: bold;
+}
+
+/* Daily Only */
+.forecast-high-low {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.forecast-condition {
+    width: 50px;
+}
+
+.daily-forecast-title {
+    margin-bottom: var(--title-margin);
+}
+
+/* Hourly Only */
+.day-title {
+    font-size: calc(var(--main-font-size) * 1.25);
+    font-weight: bold;
+    margin: var(--title-margin) 0px;
+    /* padding: 100px 0px; */
+}
+
+
+/* Current Weather Information - Bottom */
+
+.current-weather-data {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0px;
+    gap: 20px;
+    column-gap: 40px;
+    align-items: center;
+    min-width: fit-content;
+}
+
+.current-weather-info-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+    /* width: 80%; */
+    min-width: fit-content;
+    gap: 10px;
+}
+
+.current-weather-info-item div {
+    /* text-align: center;
+    min-width: fit-content; */
+}
+
+.current-weather-info-item:not(:last-child):not(:nth-child(5))::after {
+    content: '';
+    width: 100%;
+    border-bottom: 1px black solid;
+    grid-column: 1 / 3;
+}
