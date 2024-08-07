@@ -6,6 +6,7 @@ import {populateCurrentWeatherInfo} from './current-weather-info-bottom.js';
 import {displayForecastButtons, displayChangeTempScaleButtons} from './buttons.js';
 import {setSelectedTempScale} from './temp-scale.js';
 import pageState from '../logic/settings-state.js';
+import loaderGifAsset from '../assets/gif/webpage-loader.gif';
 
 export function clearPage() {
     const container = document.querySelector('#container');
@@ -51,5 +52,26 @@ export function refreshPage(weather) {
         refreshWithHourlyForecast(weather);
     } else {
         throw new Error('No forecast type found at refresh');
+    }
+}
+
+export function addLoaderGIF() {
+    // const container = document.querySelector('#container');
+    const header = document.querySelector('.header');
+    const loader = document.createElement('div');
+    loader.classList.add('loader-container');
+    header.after(loader);
+
+    const loaderGif = document.createElement('img');
+    loaderGif.classList.add('loader-gif');
+    loaderGif.src = loaderGifAsset;
+    loaderGif.alt = 'webpage loader';
+    loader.appendChild(loaderGif);
+}
+
+export function removeLoaderGIF() {
+    const loader = document.querySelector('.loader-container');
+    if (loader) {
+        loader.remove();
     }
 }

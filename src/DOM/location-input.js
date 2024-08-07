@@ -1,6 +1,6 @@
 import {getWeather} from '../logic/weather-API.js';
 import {appendChildren} from './reusable-functions.js';
-import {refreshPage} from './page-control.js';
+import {refreshPage, addLoaderGIF, removeLoaderGIF} from './page-control.js';
 
 export function populateLocationSearch() {
     const container = document.querySelector('#container');
@@ -38,8 +38,26 @@ export function populateLocationSearch() {
     activateSubmitButton();
 }
 
+function addErrorMessage(error) {
+    const header = document.querySelector('.header');
+    const errorMessage = document.createElement('div');
+    errorMessage.classList.add('error-message');
+    errorMessage.textContent = error;
+    header.appendChild(errorMessage);
+}
+
 async function pushWeatherObjToDOM(location) {
-    const weather = await getWeather(location);
+    let weather;
+    try {
+        addLoaderGIF();
+        weather = await getWeather(location);
+    } catch(err) {
+        removeLoaderGIF();
+        addErrorMessage(err);
+        return;
+    }
+    
+    // For testing purposes
     console.log(weather);
     
     refreshPage(weather);

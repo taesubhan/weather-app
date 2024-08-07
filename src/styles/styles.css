@@ -27,7 +27,16 @@ html {
 
 .header {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+}
+
+.error-message {
+    color: red;
+}
+
+.loader-gif {
+    width: 50px;
 }
 
 /* Current Weather */
