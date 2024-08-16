@@ -1,5 +1,6 @@
 import {appendChildren} from './reusable-functions.js';
 
+// Create box used to store hourly forecast
 function buildHourlyForecast(weather) {
     const container = document.querySelector('#container');
 
@@ -19,13 +20,7 @@ function buildHourlyForecast(weather) {
     appendChildren(hourlyForecast, title, records);
 }
 
-export function deleteHourlyForecast() {
-    const hourlyForecast = document.querySelector('.hourly-forecast');
-    if (hourlyForecast) {
-        hourlyForecast.remove();
-    }
-}
-
+// Takes in a day object (from the weather object) and creates a div for each hour data
 function populateHourlyRecords(day, dayElem) {
     const hours = day.hours;
     for (let i = 0; i < hours.length; i++) {
@@ -52,6 +47,7 @@ function populateHourlyRecords(day, dayElem) {
     }
 }
 
+// Create a HTML box and populate it with hourly forecast data
 export function populateHourlyForecastWeather(weather) {
     buildHourlyForecast(weather);
     const hourlyForecast = document.querySelector('.hourly-forecast-container');
@@ -75,6 +71,7 @@ export function populateHourlyForecastWeather(weather) {
     }
 }
 
+// Add class on "Show Hourly Data" button to mark it as currently selected
 export function selectHourlyForecast() {
     const showDailyButtons = document.querySelectorAll('.show-daily-forecast');
     const showHourlyButtons = document.querySelectorAll('.show-hourly-forecast');

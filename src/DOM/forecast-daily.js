@@ -1,5 +1,6 @@
 import {appendChildren} from './reusable-functions.js';
 
+// Create box used to store 3 day forecast
 function build3DayForecast(weather) {
     const container = document.querySelector('#container');
 
@@ -24,13 +25,7 @@ function build3DayForecast(weather) {
     appendChildren(threeDayForecast, title, body);
 }
 
-export function delete3DayForecast() {
-    const forecast = document.querySelector('.forecast');
-    if (forecast) {
-        forecast.remove();
-    }
-}
-
+// Create a HTML box and populate it with 3 day forecast data
 export function populateDailyForecastWeather(weather) {
     build3DayForecast(weather);
     const forecastDays = document.querySelector('.daily-forecast-body');
@@ -67,6 +62,7 @@ export function populateDailyForecastWeather(weather) {
     }
 }
 
+// Add class on "Show Daily Data" button to mark it as currently selected
 export function selectDailyForecast() {
     const showHourlyButtons = document.querySelectorAll('.show-hourly-forecast');
     const showDailyButtons = document.querySelectorAll('.show-daily-forecast');

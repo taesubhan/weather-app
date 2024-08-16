@@ -1,6 +1,7 @@
 import { convertTo12HourClock } from './logic-functions.js';
 import pageState from './settings-state.js';
 
+// Factory function that returns an object which contains methods used to interact with the weather object retrieved from the API
 function createWeatherObjectMethods() {
     
     function turnToDegrees(temp) {
@@ -105,7 +106,11 @@ function createWeatherObjectMethods() {
         return result;
     }
 
-    return {setToFahrenheit, setToCelsius, getTempScale, getLocation, getCurrentTemperature, getCurrentCondition, getCurrentWeatherInfo, getMaxMinTempToday, getForecastDays};
+    function isDay() {
+        return this.current.is_day === 1;
+    }
+
+    return {setToFahrenheit, setToCelsius, getTempScale, getLocation, getCurrentTemperature, getCurrentCondition, getCurrentWeatherInfo, getMaxMinTempToday, getForecastDays, isDay};
 } 
 
 // Combines the object from the API and the object that holds all the methods (created from "createWeatherObjectMethods()")

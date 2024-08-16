@@ -1,12 +1,6 @@
 import {appendChildren} from './reusable-functions.js';
 
-export function deleteCurrentWeatherInfo() {
-    const info = document.querySelector('.current-weather-info');
-    if (info) {
-        info.remove();
-    }
-}
-
+// Create a box that will contain additional information about the current weather
 function buildCurrentWeatherInfo() {
     const container = document.querySelector('#container');
     
@@ -26,6 +20,7 @@ function buildCurrentWeatherInfo() {
     appendChildren(weatherInfo, title, dataContainer);
 }
 
+// Returns the appropriate title name based on the given object key
 function getCurrentWeatherInfoTitle(key) {
     switch(key) {
         case 'feelslike_f':
@@ -43,6 +38,7 @@ function getCurrentWeatherInfoTitle(key) {
     }
 }
 
+// Create and populate the "Current Weather" box with additional information about the weather
 export function populateCurrentWeatherInfo(weather) {
     buildCurrentWeatherInfo();
     const weatherContainer = document.querySelector('.current-weather-data');

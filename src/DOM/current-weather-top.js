@@ -1,5 +1,6 @@
 import {appendChildren} from './reusable-functions.js';
 
+// Create a box at the top of page used to store basic current weather information
 function buildCurrentWeatherBox() {
     const container = document.querySelector('#container');
 
@@ -52,13 +53,7 @@ function buildCurrentWeatherBox() {
     currentBody.appendChild(currentConditionIcon);
 }
 
-export function deleteCurrentWeatherBox() {
-    const currentWeather = document.querySelector('.current-weather');
-    if (currentWeather) {
-        currentWeather.remove();
-    }
-}
-
+// Populate the top box with basic information about the current weather
 export function populateCurrentWeather(weather) {
     buildCurrentWeatherBox();
     const currentRegionState = document.querySelector('.region-state');
@@ -79,8 +74,9 @@ export function populateCurrentWeather(weather) {
     const location = weather.getLocation();
     const condition = weather.getCurrentCondition();
     const range = weather.getMaxMinTempToday();
+    const territory = location.region ? location.region : location.country; 
 
-    currentRegionState.textContent = `${location.region}, ${location.city}`;
+    currentRegionState.textContent = `${territory}, ${location.city}`;
     currentRegionState.innerText += '\u00A0';
     currentLocalTime.textContent = `as of ${location.localTime}`;
     currentTemp.textContent = weather.getCurrentTemperature().fahrenheit;

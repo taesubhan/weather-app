@@ -1,21 +1,30 @@
-export function setSelectedTempScale(weather) {
+// Changes the settings-state module to be either Fahrenheit or Celsius
+export function setSelectedTempScale(weather, FahrenheitBtn, CelsiusBtn) {
     if (weather.getTempScale() === 'fahrenheit') {
-        selectFahrenheit();
+        setAsSelectedScale(FahrenheitBtn);
     } else if (weather.getTempScale() === 'celsius') {
-        selectCelsius();
+        setAsSelectedScale(CelsiusBtn);
     }
 }
 
+// Accepts two button elements: the first will receive a class indicating that it is selected, while the second will have it removed
+function setAsSelectedScale(selectedBtn, deselectedBtn=null) {
+    selectedBtn.classList.add('selected-temp-scale');
+    if (deselectedBtn) {
+        deselectedBtn.classList.remove('selected-temp-scale');
+    }
+}
+
+// Changes the settings-state module to be Fahrenheit
 export function selectFahrenheit() {
     const fahrenheitBtn = document.querySelector('.set-to-fahrenheit');
     const celsiusBtn = document.querySelector('.set-to-celsius');
-    fahrenheitBtn.classList.add('selected-temp-scale');
-    celsiusBtn.classList.remove('selected-temp-scale');
+    setAsSelectedScale(fahrenheitBtn, celsiusBtn);
 }
 
+// Changes the settings-state module to be Celsius
 export function selectCelsius() {
     const celsiusBtn = document.querySelector('.set-to-celsius');
     const fahrenheitBtn = document.querySelector('.set-to-fahrenheit');
-    celsiusBtn.classList.add('selected-temp-scale');
-    fahrenheitBtn.classList.remove('selected-temp-scale');
+    setAsSelectedScale(celsiusBtn, fahrenheitBtn);
 }

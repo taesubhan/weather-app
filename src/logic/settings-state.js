@@ -1,3 +1,4 @@
+// Module that stores the state of the webpage e.g. Whether to display fahrenheit or celsius data
 export default {
     forecast: 'daily',
     tempScale: 'fahrenheit',

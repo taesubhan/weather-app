@@ -1,12 +1,18 @@
+/* High level */
+
 :root {
+    font-family: sans-serif, Arial, 'Times New Roman';
+    --main-font-family: sans-serif, Arial, 'Times New Roman';
     --main-font-size: 25px;
     --button-font-size: 20px;
+    --button-small-font-size: 12px;
     --title-font-size: 35px;
     --current-temp-font-size: 50px;
     --border-radius: 10px;
-    --page-width: 80%;
+    --page-width: 70%;
     --title-margin: 20px;
-    
+    --background-color: white;
+    --btn-selection-color: #4ade80;
 }
 
 html {
@@ -25,24 +31,63 @@ html {
     gap: 50px;
 }
 
+body {
+    margin: 0px;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+/* Input header */
+
 .header {
+    width: 100%;
+    height: 120px;
+    background-color: #0c4a6e;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 4px 2px -2px rgba(67, 67, 67, 0.5);
+}
+
+.user-input {
+    font-size: var(--main-font-size);
+}
+
+.location-label {
+    color: white;
+    font-weight: bold;
+}
+
+#location-search {
+    font-size: var(--main-font-size);
+    padding: 5px;
+    height: 40px;
+    border-radius: var(--border-radius);
+}
+
+.submit-location {
+    font-size: var(--button-font-size);
+    height: 40px;
+    margin-left: 20px;
+    border-radius: var(--border-radius);
+    background-color: #06b6d4;
 }
 
 .error-message {
     color: red;
+    font-size: var(--button-font-size);
 }
 
 .loader-gif {
-    width: 50px;
+    width: 100px;
 }
 
-/* Current Weather */
+/* Current Weather Box */
 
 .current-weather {
-    /* align-content: start; */
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -51,6 +96,7 @@ html {
     border: 1px black solid;
     border-radius: var(--border-radius);
     font-size: var(--main-font-size);
+    background-color: var(--background-color);
 }
 
 .current-location {
@@ -65,11 +111,10 @@ html {
 
 .current-body {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr .5fr .5fr;
     align-items: center;
     padding: 10px;
     flex: 1 1 auto;
-    /* height: 100%; */
 }
 
 .current-weather-information {
@@ -82,14 +127,6 @@ html {
     font-size: var(--current-temp-font-size);
 }
 
-.current-condition {
-    
-}
-
-.current-condition-icon-container {
-
-}
-
 .condition-icon {
     width: 100px;
 }
@@ -99,10 +136,8 @@ html {
     gap: 20px;
 }
 
-
-/* Forecast */
-
 /* Buttons */
+
 .forecast-buttons {
     display: flex;
 }
@@ -116,20 +151,26 @@ html {
 }
 
 .forecast-selected {
-    background-color: rgb(1, 218, 1);
+    background-color: var(--btn-selection-color);
+}
+
+.change-temp-scale {
+    justify-self:end;
+    align-self: start;
 }
 
 .temp-scale-button {
-    font-size: 12px;
+    font-size: var(--button-small-font-size);
     width: 80px;
     height: 30px;
 }
 
 .selected-temp-scale {
-    background-color: rgb(1, 218, 1);
+    background-color: var(--btn-selection-color);
 }
 
-/* Daily + Hourly */
+/* Daily + Hourly Forecast */
+
 .forecast,
 .hourly-forecast,
 .current-weather-info {
@@ -137,8 +178,8 @@ html {
     border: 1px black solid;
     border-radius: var(--border-radius);
     width: var(--page-width);
-    /* height: 300px; */
     padding: 10px;
+    background-color: var(--background-color);
 }
 
 .daily-forecast-body,
@@ -146,7 +187,6 @@ html {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* gap: 30px; */
     padding: 0px;
     margin: 0px;
 }
@@ -158,8 +198,6 @@ html {
     grid-template-columns: 1fr 1fr 1fr;
     justify-content: center;
     align-items: center;
-    /* gap: 20px; */
-    /* padding: 5px; */
 }
 
 .forecast-day:not(:last-child)::after,
@@ -178,6 +216,7 @@ html {
 }
 
 /* Daily Only */
+
 .forecast-high-low {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -192,13 +231,12 @@ html {
 }
 
 /* Hourly Only */
+
 .day-title {
     font-size: calc(var(--main-font-size) * 1.25);
     font-weight: bold;
     margin: var(--title-margin) 0px;
-    /* padding: 100px 0px; */
 }
-
 
 /* Current Weather Information - Bottom */
 
@@ -218,14 +256,8 @@ html {
     grid-template-columns: 1fr 1fr;
     justify-items: center;
     align-items: center;
-    /* width: 80%; */
     min-width: fit-content;
     gap: 10px;
-}
-
-.current-weather-info-item div {
-    /* text-align: center;
-    min-width: fit-content; */
 }
 
 .current-weather-info-item:not(:last-child):not(:nth-child(5))::after {

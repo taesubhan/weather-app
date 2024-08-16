@@ -1,4 +1,3 @@
-
 import { createWeatherObject } from './weather-object.js';
 
 // Makes a request to the weather API to retrieve weather object based on location parameter 
@@ -22,7 +21,7 @@ export async function getWeather(location) {
    
 }
 
-// Checks the API response object to see if it has any errors, and if it does it throws it
+// Checks the API response object to see if it has any errors, and if it does it throws that error
 function checkResponseErrors(response) {
     if (!response.hasOwnProperty('error')) {
         return;

@@ -2,6 +2,7 @@ import {getWeather} from '../logic/weather-API.js';
 import {appendChildren} from './reusable-functions.js';
 import {refreshPage, addLoaderGIF, removeLoaderGIF} from './page-control.js';
 
+// Create a search box for users to input a location
 export function populateLocationSearch() {
     const container = document.querySelector('#container');
     
@@ -23,6 +24,7 @@ export function populateLocationSearch() {
     // Level 4
     const label = document.createElement('label');
     label.setAttribute('for', 'location-search');
+    label.classList.add('location-label');
     label.textContent = 'Input city or zip code: ';
 
     const input = document.createElement('input');
@@ -38,14 +40,22 @@ export function populateLocationSearch() {
     activateSubmitButton();
 }
 
+// Accepts an error message and displays the error
 function addErrorMessage(error) {
     const header = document.querySelector('.header');
-    const errorMessage = document.createElement('div');
+    let errorMessage = document.createElement('div');
+    const existingError = document.querySelector('.error-message');
+    if (existingError) {
+        errorMessage = existingError;
+        errorMessage.textContent = error;
+        return;
+    }
     errorMessage.classList.add('error-message');
     errorMessage.textContent = error;
     header.appendChild(errorMessage);
 }
 
+// Retrieves the weather information given a location string. Retrieves data through the weather API
 async function pushWeatherObjToDOM(location) {
     let weather;
     try {
@@ -63,6 +73,7 @@ async function pushWeatherObjToDOM(location) {
     refreshPage(weather);
 }
 
+// Adds event listener to the submit button. Sends the text within the search box to retrieve the location's weather data
 function activateSubmitButton() {
     const submitButton = document.querySelector('.submit-location');
 
